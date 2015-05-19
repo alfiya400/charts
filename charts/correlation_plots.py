@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 import numpy as np
 
-from bokeh.plotting import *
+from bokeh.plotting import figure, output_file, show
 from bokeh.models import HoverTool, ColumnDataSource
 
 
@@ -47,13 +47,13 @@ def correlation_plot(corr, output_filename):
     output_file(output_filename)
 
     p = figure(title="Correlation matrix",
-        x_axis_location="above", tools="resize,hover,save",
-        x_range=list(reversed(names)), y_range=names)
+               x_axis_location="above", tools="resize,hover,save",
+               x_range=list(reversed(names)), y_range=names)
     p.plot_width = 1000
     p.plot_height = 1000
 
     p.rect('xname', 'yname', 0.9, 0.9, source=source,
-         color='colors', alpha='alphas', line_color=None)
+           color='colors', alpha='alphas', line_color=None)
 
     p.grid.grid_line_color = None
     p.axis.axis_line_color = None
